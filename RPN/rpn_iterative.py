@@ -36,7 +36,7 @@ def sanitizeInput(rawTokens):
 
 def evaluateExpression(operand, expression):
 
-    if len(expression) = 1:
+    if len(expression) == 1:
 
     elif len(expression) > 1:
 
