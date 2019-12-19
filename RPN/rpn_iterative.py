@@ -20,18 +20,25 @@ def sanitizeInput(rawTokens):
     needBreak = False
     
     for token in rawTokens:
+        if needBreak == True: break
         for char in valid_operators:
             if token != char and needBreak == False:
                 try:
                     temp = float(token)
+                    sanitizedTokens.append(temp)
                 except:
                     print("Invalid expression. Please double check your input")
                     needBreak = True
-        if needBreak == True: break        
+            elif token == char:
+                sanitizedTokens.append(token)
         
     return sanitizedTokens
 
 def evaluateExpression(operand, expression):
+
+    if len(expression) = 1:
+
+    elif len(expression) > 1:
 
 
 
