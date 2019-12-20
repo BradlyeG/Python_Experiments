@@ -2,10 +2,11 @@
 import math
 
 #all the operators the user can enter
-valid_operators = ("+", "-", "*", "/","^","sqrt","cs","ce")
+valid_operators = ("+", "-", "*", "/","^","sqrt","ce")
 
 #Global variables to keep the current result, and the last entered token to evaluate
-currentResult, stackTop, workingRegister = 0
+currentResult, stackTop = 0
+globalStack = []
 
 # test method
 def intro():
@@ -27,47 +28,36 @@ def sanitizeInput(rawTokens):
     #less than ideal solution to control flow; initilize a binary value to determine when to break out of the token sanitizing loop
     needBreak = False
     
+    #we need to iterate through every input separated by a space in the expression we recieved
     for token in rawTokens:
+
+        #break if the expression is not valid
         if needBreak == True: break
-        for char in valid_operators:
-            if token != char and needBreak == False:
+
+        #iterate through every one of our valid operators 
+        for op in valid_operators:
+
+            #if the token isn't an operator and we don't need to break
+            if token != op and needBreak == False:
+
+                #try to cast the token into a float. The calculator only allows for the given set of expressions or numbers. If it isn't a number it will fail
                 try:
                     temp = float(token)
+
+                    #i'm hoping that if token can't be cast as a float then we will move to the except block before actually appending it to the sanitized expression list
                     sanitizedTokens.append(temp)
                 except:
                     print("Invalid expression. Please double check your input")
                     needBreak = True
-            elif token == char:
+            
+            #if the token is an operator then go ahead and append it
+            elif token == op:
                 sanitizedTokens.append(token)
         
     return sanitizedTokens
 
 def evaluateExpression(operand, expression):
-
-    if len(expression) == 1:
-        workingRegister = expression[0]
-    elif len(expression) > 1:
-        for cntr in len(expression):
-            for op in valid_operators:
-                if expression[cntr] == op:
-                    workingRegister = expression[cntr]
-
-            if workingRegister == "+":
-                currentResult += expression[cntr+1]
-            elif workingRegister == "-":
-                currentResult -= expression[cntr+1]
-            elif workingRegister == "*":
-                currentResult *= expression[cntr+1]
-            elif workingRegister == "/":
-                currentResult /= expression[cntr+1]
-            elif workingRegister == "^":
-                currentResult = currentResult**expression[cntr+1]
-            elif workingRegister == "sqrt":
-                currentResult = math.sqrt(currentResult)
-            elif workingRegister == "cs":
-                
-            elif workingRegister == "ce":
-
+    print("no")
 
 
 
