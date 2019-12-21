@@ -51,13 +51,36 @@ def sanitizeInput(rawTokens):
                     needBreak = True
             
             #if the token is an operator then go ahead and append it
-            elif token == op:
+            elif token == op and needBreak == False:
                 sanitizedTokens.append(token)
+
+            #if we need to break then break out of the loop
+            elif needBreak == True:
+                break
         
     return sanitizedTokens
 
+def push_stack(stackData):
+    globalStack.append(stackData)
+
+def pop_stack(stackData):
+    return stackData.pop()
+
 def evaluateExpression(operand, expression):
-    print("no")
+    stackEmpty = False
+
+    while stackEmpty == True:
+        topStack = pop_stack(expression)
+        
+        for op in valid_operators:
+            if topStack == op:
+
+
+        
+
+
+
+
 
 
 
